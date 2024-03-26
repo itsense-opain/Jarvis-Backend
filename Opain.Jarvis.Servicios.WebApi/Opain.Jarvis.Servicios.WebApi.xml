@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Opain.Jarvis.Servicios.WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:Opain.Jarvis.Servicios.WebApi.Controllers.CargueController.#ctor(Opain.Jarvis.Aplicacion.Interfaces.ICargueAplicacion,Serilog.ILogger,Opain.Jarvis.Servicios.Store.OperacionesVuelo)">
+            <summary>
+            Cargue de archivos
+            </summary>
+            <param name="cargue"></param>
+            <param name="l"></param>
+            <param name="store_OperacionesVuelo"></param>
+        </member>
+        <member name="M:Opain.Jarvis.Servicios.WebApi.Controllers.CargueController.InsertarAsync(Opain.Jarvis.Dominio.Entidades.CargueOtd)">
+            <summary>
+            /
+            </summary>
+            <param name="accesoOtd"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Opain.Jarvis.Servicios.WebApi.Controllers.CausalController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Opain.Jarvis.Servicios.WebApi.Controllers.PasajerosController.ObtenerExentosAsync(System.String,System.String)">
+            <summary>
+            Consultar la tabla exentos.
+            </summary>
+            <param name="numerovuelo"></param>
+            <param name="fecha"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Opain.Jarvis.Servicios.WebApi.Controllers.PasajeroTransitoController.ObtenerDatos(Opain.Jarvis.Dominio.Entidades.TransitoRequest)">
+            <summary>
+            Obtener datos : Permite realizar la extracción de datos de la estructura de Transitos 
+            enviado varios tipos de filtro personalizados y ejecutados por base de datos.
+            </summary>
+            <param name="oFiltro">Objeto de trasnferencia de datos con parametros de busqueda</param>
+            <returns>Colección de datos</returns>
+        </member>
+        <member name="M:Opain.Jarvis.Servicios.WebApi.Controllers.VuelosController.TraerZips(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Informacion de Api Traer zip con sus respectivos parametros
+            </summary>
+            <param name="idAerolinea"></param>
+            <param name="NombreAerolinea"></param>
+            <param name="TodasAerolinea"></param>
+            <param name="fechafinal"></param>
+            <param name="fechainicial"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Opain.Jarvis.Servicios.WebApi.Controllers.VuelosController.SuspenderAsync(System.String)">
+            <summary>
+            Suspenders the asyncnc.
+            Por medio de este método se pone un cierre de vuelo en estado suspendido
+            para que la aerolínea pueda subir un nuevo cierre corregido.
+            La tarea que remueve las suspensiones se ejecuta en la base de datos y se llama Quitar suspensiones
+            
+            </summary>
+            <param name="IDOperacion">Identificador de la operación de vuelo en la tabla de operaciones.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Opain.Jarvis.Servicios.WebApi.Controllers.VuelosController.NotificacionesSuspensionesRetiradasAsync">
+            <summary>
+            Notificacioneses the suspensiones retiradas asyncnc.
+            Permite tomas aquellos cierres en estado 11 notifica a las aerolineas que los va a pasar
+            a estado 4 porque nunca llego la pareja con la correción
+            </summary>
+            <returns>True si fucniona correctamente.</returns>
+        </member>
+        <member name="M:Opain.Jarvis.Servicios.WebApi.Controllers.VuelosController.ObtenerDatos(Opain.Jarvis.Dominio.Entidades.OperacionVueloOTDRequest)">
+            <summary>
+            Obtener datos : Permite realizar la extracción de datos de la estructura de Operaciones de vuelos
+            enviado varios tipos de filtro personalizados y ejecutados por base de datos.
+            </summary>
+            <param name="oFiltro">Objeto de trasnferencia de datos con parametros de busqueda</param>
+            <returns>Colección de datos</returns>
+        </member>
+    </members>
+</doc>
