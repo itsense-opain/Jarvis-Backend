@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Opain.Jarvis.Aplicacion.Interfaces;
 using Opain.Jarvis.Dominio.Entidades;
-using Opain.Jarvis.Dominio.Entidades;
 using Opain.Jarvis.Infraestructura.Datos.Core;
 using System;
 using System.Collections.Generic;

@@ -12,6 +12,7 @@ namespace Opain.Jarvis.Infraestructura.Datos
         public DbSet<Pais> Paises { get; set; }
         public DbSet<Ciudad> Ciudades { get; set; }
         public DbSet<Aerolinea> Aerolineas { get; set; }
+        public DbSet<Aeropuertos> Aeropuertos { get; set; }
         public DbSet<Vuelo> Vuelos { get; set; }
         public DbSet<OperacionesVuelo> OperacionesVuelos { get; set; }
         public DbSet<OperacionesVueloMaster> OperacionesVuelosMaster { get; set; }
@@ -25,8 +26,6 @@ namespace Opain.Jarvis.Infraestructura.Datos
         public DbSet<HorarioOperacion> HorariosOperaciones { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<RespuestaTicket> RespuestasTickets { get; set; }
-        public DbSet<Acceso> Accesos { get; set; }
-
         public DbSet<PoliticasDeTratamientoDeDatos> PoliticasDeTratamientoDeDatos { get; set; }
         public DbSet<CargueArchivo> CargueArchivos { get; set; }
         public DbSet<Causal> Causales { get; set; }

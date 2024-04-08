@@ -296,7 +296,6 @@ namespace Opain.Jarvis.Dominio.Entidades
                .ForMember(d => d.Adjunto, s => s.MapFrom(src => src.Adjunto))
                .ForMember(d => d.IdUsuario, s => s.MapFrom(src => src.IdUsuario));
 
-            CreateMap<Acceso, AccesoOtd>().ReverseMap();
             CreateMap<PoliticasDeTratamientoDeDatos, PoliticasDeTratamientoDeDatosOtd>().ReverseMap();
 
             CreateMap<CargueArchivo, CargueOtd>().ReverseMap();
