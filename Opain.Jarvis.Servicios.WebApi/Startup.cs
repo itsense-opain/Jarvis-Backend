@@ -13,7 +13,6 @@ using Opain.Jarvis.Aplicacion.Principal;
 using Opain.Jarvis.Dominio.Entidades;
 using Opain.Jarvis.Infraestructura.Datos;
 using Opain.Jarvis.Servicios.WebApi.Helpers;
-
 using Serilog;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
@@ -24,7 +23,6 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using System.Net.Http.Formatting;
 using Microsoft.Net.Http.Headers;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Opain.Jarvis.Infraestructura.Datos.Core;
@@ -36,7 +34,7 @@ namespace Opain.Jarvis.Servicios.WebApi
         private readonly string politicaCors = "PoliticaJarvis";
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;            
+            Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -63,15 +61,15 @@ namespace Opain.Jarvis.Servicios.WebApi
             .AllowAnyMethod()
             ));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-            .AddJsonOptions(Options =>
-            {
-                Options.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver();
-            });
+            services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+    });
 
             services.AddMvc(options =>
-            {             
-                    options.InputFormatters.Insert(0, new BinaryInputFormatter());                
+            {
+                options.InputFormatters.Insert(0, new BinaryInputFormatter());
             });
 
             services.AddSingleton<IConfiguration>(Configuration);
@@ -79,8 +77,8 @@ namespace Opain.Jarvis.Servicios.WebApi
             /////Serilog
 
             Log.Logger = new LoggerConfiguration()
-                .AuditTo.Logger(cfg => cfg.MinimumLevel.Information().Enrich.FromLogContext().WriteTo.RollingFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs/AUD.log"),  outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] [{SourceContext}] {Message:lj}{NewLine}"))
-                .WriteTo.Logger(cfg => cfg.MinimumLevel.Warning().Enrich.FromLogContext().WriteTo.RollingFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs/LOG.log"),  outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] [{SourceContext}] {Message:lj}:{Exception}{NewLine}"))
+                .AuditTo.Logger(cfg => cfg.MinimumLevel.Information().Enrich.FromLogContext().WriteTo.RollingFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs/AUD.log"), outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] [{SourceContext}] {Message:lj}{NewLine}"))
+                .WriteTo.Logger(cfg => cfg.MinimumLevel.Warning().Enrich.FromLogContext().WriteTo.RollingFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs/LOG.log"), outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level}] [{SourceContext}] {Message:lj}:{Exception}{NewLine}"))
                 .CreateLogger();
 
             services.AddSingleton(Log.Logger);
@@ -167,7 +165,7 @@ namespace Opain.Jarvis.Servicios.WebApi
             services.AddScoped<IPoliticasDeTratamientoDeDatosRepositorio, PoliticasDeTratamientoDeDatosRepositorio>();
             services.AddScoped<IAccesoRepositorio, AccesoRepositorio>();
             services.AddScoped<ICargueAplicacion, CargueAplicacion>();
-            services.AddScoped<ICargueRepositorio,CargueRepositorio>();
+            services.AddScoped<ICargueRepositorio, CargueRepositorio>();
             services.AddScoped<ICausalRepositorio, CausalRepositorio>();
             services.AddScoped<ICausalAplicacion, CausalAplicacion>();
             services.AddScoped<INovedadRepositorio, NovedadRepositorio>();

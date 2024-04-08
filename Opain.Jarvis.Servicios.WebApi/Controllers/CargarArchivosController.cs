@@ -1,12 +1,7 @@
-﻿using AutoMapper.Configuration;
-using Microsoft.Extensions.Configuration;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Opain.Jarvis.Aplicacion.Interfaces;
-using Opain.Jarvis.Dominio.Entidades;
 using Opain.Jarvis.Dominio.Entidades;
 using Serilog;
 using System;
@@ -14,15 +9,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Threading.Tasks;
-using System.Collections;
-using System.Net.Http.Formatting;
-using System.Net.Mail;
-using System.Net;
 using Microsoft.AspNetCore.Authorization;
-using System.Linq;
-
-
-
 namespace Opain.Jarvis.Servicios.WebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
