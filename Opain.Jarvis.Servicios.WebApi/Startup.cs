@@ -163,6 +163,8 @@ namespace Opain.Jarvis.Servicios.WebApi
             services.AddScoped<IAccesoAplicacion, AccesoAplicacion>();
             services.AddScoped<IPoliticasDeTratamientoDeDatosAplicacion, PoliticasDeTratamientoDeDatosAplicacion>();
             services.AddScoped<IPoliticasDeTratamientoDeDatosRepositorio, PoliticasDeTratamientoDeDatosRepositorio>();
+            services.AddScoped<IAccesoRepositorio, AccesoRepositorio>();
+            services.AddScoped<ICargueAplicacion, CargueAplicacion>();
             services.AddScoped<ICargueRepositorio, CargueRepositorio>();
             services.AddScoped<ICausalRepositorio, CausalRepositorio>();
             services.AddScoped<ICausalAplicacion, CausalAplicacion>();
