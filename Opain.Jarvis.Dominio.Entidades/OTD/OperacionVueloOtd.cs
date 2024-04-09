@@ -80,27 +80,11 @@ namespace Opain.Jarvis.Dominio.Entidades
         public int NovedadCargue { get; set; }
         public int NovedadProceso { get; set; }
         public int IdVuelo { get; set; }
-        public string Id_Daily { get; set; }
-
-        public int? tasasReportadas { get; set; }
-
-
         public int? TotalEmbarcados_LIQ { get; set; }
-        public int? INF_LIQ { get; set; }
-        public int? TTL_LIQ { get; set; }
-        public int? TTC_LIQ { get; set; }
-        public int? EX_LIQ { get; set; }
-        public int? TRIP_LIQ  { get; set; }
-        public int? PAX_LIQ { get; set; }
-        public int? PAGOCOP_LIQ { get; set; }
-        public int? PAGOUSD_LIQ { get; set; }
-
+        public int? TotalEmbarcadosAdd { get; set; }
         public string EnvioNotificacion { get; set; }
-
         public string SiglaAerolinea { get; set; }
-
         public DateTime FechaCreacion { get; set; }
-
         public string FechaDesde { get; set; }
         public string FechaHasta { get; set; }
     }

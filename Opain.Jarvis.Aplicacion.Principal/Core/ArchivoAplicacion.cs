@@ -21,7 +21,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
 
         public async Task ActualizarAsync(ArchivoOtd archivo)
         {
-            var archivoMapeo = mapper.Map<ArchivoOtd, Archivo>(archivo);
+            var archivoMapeo = mapper.Map<ArchivoOtd, RutaArchivos>(archivo);
 
             await archivoRepositorio.ActualizarAsync(archivoMapeo);
         }
@@ -33,17 +33,17 @@ namespace Opain.Jarvis.Aplicacion.Principal
 
         public async Task InsertarAsync(ArchivoOtd archivo)
         {
-            var archivoMapeo = mapper.Map<ArchivoOtd, Archivo>(archivo);
+            var archivoMapeo = mapper.Map<ArchivoOtd, RutaArchivos>(archivo);
             await archivoRepositorio.InsertarAsync(archivoMapeo);
         }
 
         public async Task  InsertarMasivoAsync(IList<ArchivoOtd> archivo)
         {
-            IList<Archivo> archivosOdt = new List<Archivo>();
+            IList<RutaArchivos> archivosOdt = new List<RutaArchivos>();
 
             foreach (var item in archivo)
             {
-                var a = mapper.Map<ArchivoOtd, Archivo>(item);
+                var a = mapper.Map<ArchivoOtd, RutaArchivos>(item);
                 archivosOdt.Add(a);
             }
 
@@ -53,7 +53,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
         public async Task<ArchivoOtd> ObtenerAsync(int id)
         {
             var archivo = await archivoRepositorio.ObtenerAsync(id);
-            var archivoOtd = mapper.Map<Archivo, ArchivoOtd>(archivo);
+            var archivoOtd = mapper.Map<RutaArchivos, ArchivoOtd>(archivo);
 
             return archivoOtd;
         }
@@ -61,11 +61,11 @@ namespace Opain.Jarvis.Aplicacion.Principal
         public async Task<IList<ArchivoOtd>> ObtenerPorOperacionAsync(int idOperacion)
         {
             IList<ArchivoOtd> archivosOtd = new List<ArchivoOtd>();
-            IList<Archivo> archivos = await archivoRepositorio.ObtenerPorOperacionAsync(idOperacion);
+            IList<RutaArchivos> archivos = await archivoRepositorio.ObtenerPorOperacionAsync(idOperacion);
 
             foreach (var item in archivos)
             {
-                var archivoOtd = mapper.Map<Archivo, ArchivoOtd>(item);
+                var archivoOtd = mapper.Map<RutaArchivos, ArchivoOtd>(item);
                 archivosOtd.Add(archivoOtd);
             }
 

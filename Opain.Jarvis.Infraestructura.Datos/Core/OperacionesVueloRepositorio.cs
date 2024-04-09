@@ -67,7 +67,6 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
             var operaciones = await contexto.OperacionesVuelos
                       .Include(vuelo => vuelo.Aerolinea)
                       .Include(op => op.Archivos)
-                      .Include(op => op.Cargue)
                       .Include(op => op.NovedadesProceso)
                       .Where(op => op.Id.Equals(id))
                       .FirstOrDefaultAsync();
@@ -86,12 +85,11 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
                     operaciones = await contexto.OperacionesVuelos
                        .Include(vuelo => vuelo.Aerolinea)
                        .Include(op => op.Archivos)
-                       .Include(op => op.Cargue)
                        .Include(op => op.NovedadesProceso)
                        .Include(op => op.Pasajeros)
                        .Include(op => op.PasajerosTransitos)
                        //.Include(op => op.Destino)
-                       .Where(x => (x.FechaVuelo >= fechaVueloInicio && x.FechaVuelo <= fechaVueloFinal) && x.EstadoProceso != 2 && x.EstadoProceso != 0 && (x.Id_Daily != null || x.Id_Daily != "0")).AsNoTracking()
+                       .Where(x => (x.FechaVuelo >= fechaVueloInicio && x.FechaVuelo <= fechaVueloFinal) && x.EstadoProceso != 2 && x.EstadoProceso != 0).AsNoTracking()
                        .ToListAsync();
                 }
                 else if (bandera == "CONA")
@@ -99,12 +97,11 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
                     operaciones = await contexto.OperacionesVuelos
                           .Include(vuelo => vuelo.Aerolinea)
                           .Include(op => op.Archivos)
-                          .Include(op => op.Cargue)
                           .Include(op => op.NovedadesProceso)
                           .Include(op => op.Pasajeros)
                           .Include(op => op.PasajerosTransitos)
                           //.Include(op => op.Destino)
-                          .Where(x => (x.FechaVuelo >= fechaVueloInicio && x.FechaVuelo <= fechaVueloFinal) && x.EstadoProceso == 6  && x.EnvioNotificacion ==0).Take(100).AsNoTracking()
+                          .Where(x => (x.FechaVuelo >= fechaVueloInicio && x.FechaVuelo <= fechaVueloFinal) && x.EstadoProceso == 6).Take(100).AsNoTracking()
                           .ToListAsync();
 
 
@@ -117,7 +114,6 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
                     operaciones = await contexto.OperacionesVuelos
                            .Include(vuelo => vuelo.Aerolinea)
                            .Include(op => op.Archivos)
-                           .Include(op => op.Cargue)
                            .Include(op => op.NovedadesProceso)
                            .Include(op => op.Pasajeros)
                            .Include(op => op.PasajerosTransitos)
@@ -157,7 +153,6 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
                     operaciones = await contexto.OperacionesVuelos
                        .Include(vuelo => vuelo.Aerolinea)
                        .Include(op => op.Archivos)
-                       .Include(op => op.Cargue)
                        .Include(op => op.NovedadesProceso)
                        .Include(op => op.Pasajeros)
                        .Include(op => op.PasajerosTransitos)
@@ -171,7 +166,6 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
                     operaciones = await contexto.OperacionesVuelos
                            .Include(vuelo => vuelo.Aerolinea)
                            .Include(op => op.Archivos)
-                           .Include(op => op.Cargue)
                            .Include(op => op.NovedadesProceso)
                            .Include(op => op.Pasajeros)
                            .Include(op => op.PasajerosTransitos)
@@ -190,7 +184,6 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
                     operaciones = await contexto.OperacionesVuelos
                                   .Include(vuelo => vuelo.Aerolinea)
                                   .Include(op => op.Archivos)
-                                  .Include(op => op.Cargue)
                                   .Include(op => op.NovedadesProceso)
                                   .Include(op => op.Pasajeros)
                                   .Include(op => op.PasajerosTransitos)
@@ -213,7 +206,6 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
                     operaciones = await contexto.OperacionesVuelos
                               .Include(vuelo => vuelo.Aerolinea)
                               .Include(op => op.Archivos)
-                              .Include(op => op.Cargue)
                               .Include(op => op.NovedadesProceso)
                               .Include(op => op.Pasajeros)
                               .Include(op => op.PasajerosTransitos)
@@ -247,7 +239,6 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
 
                 operaciones = await contexto.OperacionesVuelos
                        .Include(vuelo => vuelo.Aerolinea)
-                       .Include(op => op.Cargue)
                        .Where(x => x.FechaVuelo.Equals(fecha) && x.IdAerolinea.Equals(idAerolinea) && x.EstadoProceso != 5 && x.EstadoProceso != 6)
                        .ToListAsync();
 

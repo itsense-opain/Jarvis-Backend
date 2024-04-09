@@ -92,29 +92,8 @@ namespace Opain.Jarvis.Servicios.Store.Metodos
                     Otd.IdAerolinea = int.Parse(oR["IdAerolinea"].ToString());
                     Otd.EstadoProceso = oR["EstadoProceso"].ToString();
                     Otd.IdCargue = int.Parse(oR["IdCargue"].ToString());
-                    //Otd.validado = int.Parse(oR["Validado"].ToString());
-                    //Otd.ErroresAutomaticos = int.Parse(oR["ErroresAutomaticos"].ToString());
-                    Otd.Id_Daily = oR["Id_Daily"].ToString();
-                    //Otd.HoraVueloJDE = int.Parse(oR["HoraVueloJDE"].ToString());
-                    Otd.tasasReportadas = oR["tasasReportadas"].ToString()=="" ? 0: int.Parse(oR["tasasReportadas"].ToString());
-
-                    //Otd.IdPasajero = int.Parse(oR["IdPasajero"].ToString());
-                    //Otd.NumeroVueloLlegada = int.Parse(oR["NumeroVueloLlegada"].ToString());
-                    //Otd.OrigenDes = int.Parse(oR["OrigenDes"].ToString());
-                    //Otd.Origen = int.Parse(oR["Origen"].ToString());
-                    //Otd.HoraLlegada = int.Parse(oR["HoraLlegada"].ToString());
-                    //Otd.FechaLlegada = int.Parse(oR["FechaLlegada"].ToString());
-                    //Otd.TotalEmbarcadosAdd = int.Parse(oR["TotalEmbarcadosAdd"].ToString());
                     Otd.TotalEmbarcados_LIQ = oR["TotalEmbarcados_LIQ"].ToString() == "" ? 0 : int.Parse(oR["TotalEmbarcados_LIQ"].ToString());
-                    Otd.INF_LIQ = oR["INF_LIQ"].ToString() == "" ? 0 : int.Parse(oR["INF_LIQ"].ToString());
-                    Otd.TTL_LIQ = oR["TTL_LIQ"].ToString() == "" ? 0 : int.Parse(oR["TTL_LIQ"].ToString());
-                    Otd.TTC_LIQ = oR["TTC_LIQ"].ToString() == "" ? 0 : int.Parse(oR["TTC_LIQ"].ToString());
 
-                    Otd.EX_LIQ = oR["EX_LIQ"].ToString() == "" ? 0 : int.Parse(oR["EX_LIQ"].ToString());
-                    Otd.TRIP_LIQ = oR["TRIP_LIQ"].ToString() == "" ? 0 : int.Parse(oR["TRIP_LIQ"].ToString());
-                    Otd.PAX_LIQ = oR["PAX_LIQ"].ToString() == "" ? 0 : int.Parse(oR["PAX_LIQ"].ToString());
-                    Otd.PAGOCOP_LIQ = oR["PAGOCOP_LIQ"].ToString() == "" ? 0 : int.Parse(oR["PAGOCOP_LIQ"].ToString());
-                    Otd.PAGOUSD_LIQ = oR["PAGOUSD_LIQ"].ToString() == "" ? 0 : int.Parse(oR["PAGOUSD_LIQ"].ToString());
                     Otd.FechaCreacion = DateTime.Parse(oR["FechaCreacion"].ToString());
                     Otd.EnvioNotificacion = oR["EnvioNotificacion"].ToString();
 
@@ -132,7 +111,6 @@ namespace Opain.Jarvis.Servicios.Store.Metodos
                     Otd.IdConsecutivoCargue = 0;
                     Otd.NovedadCargue = 0;
                     Otd.NovedadProceso =0;
-                    Otd.tasasReportadas = oR["tasasReportadas"].ToString() == "" ? 0 : int.Parse(oR["tasasReportadas"].ToString());
 
                     oList.Add(Otd);
                 }

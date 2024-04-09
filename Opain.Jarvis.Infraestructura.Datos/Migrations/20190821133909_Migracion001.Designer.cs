@@ -391,31 +391,7 @@ namespace Opain.Jarvis.Infraestructura.Datos.Migrations
                     b.HasIndex("IdCargue");
 
                     b.ToTable("OperacionesVuelos");
-                });
-
-            modelBuilder.Entity("Opain.Jarvis.Dominio.Entidades.OperacionesVueloMaster", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("FechaVuelo");
-
-                    b.Property<string>("HoraVuelo")
-                        .IsRequired()
-                        .HasMaxLength(5);
-
-                    b.Property<int>("IdVuelo");
-
-                    b.Property<string>("MatriculaVuelo")
-                        .IsRequired()
-                        .HasMaxLength(15);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdVuelo");
-
-                    b.ToTable("OperacionesVuelosMaster");
-                });
+                });            
 
             modelBuilder.Entity("Opain.Jarvis.Dominio.Entidades.Pais", b =>
                 {
@@ -856,14 +832,6 @@ namespace Opain.Jarvis.Infraestructura.Datos.Migrations
                     b.HasOne("Opain.Jarvis.Dominio.Entidades.Cargue", "Cargue")
                         .WithMany("OperacionesVuelos")
                         .HasForeignKey("IdCargue")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Opain.Jarvis.Dominio.Entidades.OperacionesVueloMaster", b =>
-                {
-                    b.HasOne("Opain.Jarvis.Dominio.Entidades.Vuelo", "Vuelo")
-                        .WithMany()
-                        .HasForeignKey("IdVuelo")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

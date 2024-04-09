@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Opain.Jarvis.Dominio.Entidades;
+using System.Reflection.Emit;
 
 namespace Opain.Jarvis.Infraestructura.Datos
 {
@@ -14,8 +16,8 @@ namespace Opain.Jarvis.Infraestructura.Datos
         public DbSet<Aerolinea> Aerolineas { get; set; }
         public DbSet<Vuelo> Vuelos { get; set; }
         public DbSet<OperacionesVuelo> OperacionesVuelos { get; set; }
-        public DbSet<OperacionesVueloMaster> OperacionesVuelosMaster { get; set; }
-        public DbSet<Archivo> Archivos { get; set; }
+        public DbSet<OperacionesVueloErrores> OperacionesVueloErrores { get; set; }
+        public DbSet<OperacionesVueloSeguimiento> OperacionVueloSeguimiento { get; set; }
         public DbSet<Pasajero> Pasajeros { get; set; }
         public DbSet<PasajeroTransito> PasajerosTransito { get; set; }
         public DbSet<UsuariosAerolineas> UsuariosAerolineas { get; set; }
@@ -26,15 +28,15 @@ namespace Opain.Jarvis.Infraestructura.Datos
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<RespuestaTicket> RespuestasTickets { get; set; }
         public DbSet<Acceso> Accesos { get; set; }
-
+        public DbSet<Aeropuertos> Aeropuertos { get; set; }
         public DbSet<PoliticasDeTratamientoDeDatos> PoliticasDeTratamientoDeDatos { get; set; }
-        public DbSet<CargueArchivo> CargueArchivos { get; set; }
+        public DbSet<RutaArchivos> RutaArchivos { get; set; }
         public DbSet<Causal> Causales { get; set; }
         public DbSet<NovedadProceso> NovedadesProcesos { get; set; }
         public DbSet<Cargue> Cargues { get; set; }
-
         public DbSet<ValidacionManual> ValidacionesManuales { get; set; }
-
+        public DbSet<Tripulantes> Tripulantes { get; set; }
+        public DbSet<CategoriaPasajeros> CategoriaPasajeros { get; set; }
         public ContextoOpain(DbContextOptions<ContextoOpain> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -151,12 +153,24 @@ namespace Opain.Jarvis.Infraestructura.Datos
             {
                 b.Property(e => e.IdEstado).HasConversion<int>();
                 b.Property(e => e.PDFPasajeros).HasConversion<int>();
+                b.Property(e => e.FechaCreacion).HasDefaultValueSql("GETDATE()");
             });
 
             builder.Entity<Ciudad>(b =>
             {
                 b.Property(e => e.IdEstado).HasConversion<int>();
             });
+          
+        }
+        public class YourDbContextFactory : IDesignTimeDbContextFactory<ContextoOpain>
+        {
+            public ContextoOpain CreateDbContext(string[] args)
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<ContextoOpain>();
+                optionsBuilder.UseSqlServer("Server=192.168.93.11;Database=OpainDev;User Id=DevelopOpain;Password=Jarvis2024Dv");
+
+                return new ContextoOpain(optionsBuilder.Options);
+            }
         }
     }
 }

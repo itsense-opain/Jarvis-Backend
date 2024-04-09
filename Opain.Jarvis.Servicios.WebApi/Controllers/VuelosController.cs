@@ -88,7 +88,6 @@ namespace Opain.Jarvis.Servicios.WebApi.Controllers
             try
             {
                 operacionVueloOtd.EstadoProceso = "2";
-                operacionVueloOtd.Id_Daily = "0";
                 await operacionVueloAplicacion.InsertarAsync(operacionVueloOtd).ConfigureAwait(false);
                 logger.Information("Insertó: {@entidad}" + operacionVueloOtd);
                 return Ok();

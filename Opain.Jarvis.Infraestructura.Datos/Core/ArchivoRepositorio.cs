@@ -18,13 +18,13 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
             _contexto = contexto;
         }
 
-        public async Task InsertarAsync(Archivo archivo)
+        public async Task InsertarAsync(RutaArchivos archivo)
         {
             await _contexto.AddAsync(archivo);
             await _contexto.SaveChangesAsync();
         }
 
-        public async Task ActualizarAsync(Archivo archivo)
+        public async Task ActualizarAsync(RutaArchivos archivo)
         {
 
             _contexto.Update(archivo);
@@ -35,26 +35,26 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
         {
 
             var tipoVuelo = await ObtenerAsync(id);
-            _contexto.Archivos.Remove(tipoVuelo);
+            _contexto.RutaArchivos.Remove(tipoVuelo);
             _contexto.SaveChanges();
 
 
         }
 
-        public async Task<Archivo> ObtenerAsync(int id)
+        public async Task<RutaArchivos> ObtenerAsync(int id)
         {
-            return await _contexto.Archivos.FindAsync(id);
+            return await _contexto.RutaArchivos.FindAsync(id);
         }
 
-        public async Task InsertarMasivoAsync(IList<Archivo> archivo)
+        public async Task InsertarMasivoAsync(IList<RutaArchivos> archivo)
         {
             await _contexto.AddRangeAsync(archivo);
             await _contexto.SaveChangesAsync();
         }
 
-        public async Task<IList<Archivo>> ObtenerPorOperacionAsync(int idOperacion)
+        public async Task<IList<RutaArchivos>> ObtenerPorOperacionAsync(int idOperacion)
         {
-            return await _contexto.Archivos.Where(x => x.IdOperacionVuelo == idOperacion).ToListAsync();
+            return await _contexto.RutaArchivos.Where(x => x.IdOperacionVuelo == idOperacion).ToListAsync();
         }
     }
 }

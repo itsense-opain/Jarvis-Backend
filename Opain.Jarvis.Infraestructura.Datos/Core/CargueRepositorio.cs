@@ -27,7 +27,7 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
 
         }
 
-        public async Task<CargueArchivo> InsertarAsync(CargueArchivo cargue)
+        public async Task<RutaArchivos> InsertarAsync(RutaArchivos cargue)
         {
             await _contexto.AddAsync(cargue);
             await _contexto.SaveChangesAsync();
@@ -35,9 +35,9 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
 
         }
 
-        public async Task<IList<CargueArchivo>> ObtenerTodosAsync(DateTime inicio, DateTime fin)
+        public async Task<IList<RutaArchivos>> ObtenerTodosAsync(DateTime inicio, DateTime fin)
         {
-            return await _contexto.CargueArchivos.Where(x => x.Fecha <= fin && x.Fecha >= inicio).ToListAsync();
+            return await _contexto.RutaArchivos.Where(x => x.FechaCreacion <= fin && x.FechaCreacion >= inicio).ToListAsync();
         }
     }
 }

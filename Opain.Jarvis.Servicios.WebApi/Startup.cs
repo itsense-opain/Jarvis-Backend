@@ -88,7 +88,7 @@ namespace Opain.Jarvis.Servicios.WebApi
             ////Serilog
 
 
-            services.AddDbContext<ContextoOpain>(options => options.UseMySQL(Configuration.GetConnectionString("ConexionJarvisBD")));
+            services.AddDbContext<ContextoOpain>(options => options.UseSqlServer(Configuration.GetConnectionString("ConexionJarvisBD")));
             services.AddIdentity<Usuario, Rol>()
                 .AddEntityFrameworkStores<ContextoOpain>()
                 .AddDefaultTokenProviders();

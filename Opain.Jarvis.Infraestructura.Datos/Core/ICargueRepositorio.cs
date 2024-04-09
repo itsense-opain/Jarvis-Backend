@@ -8,8 +8,8 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
 {
     public interface ICargueRepositorio
     {
-        Task<CargueArchivo> InsertarAsync(CargueArchivo cargue);
+        Task<RutaArchivos> InsertarAsync(RutaArchivos cargue);
 
-        Task<IList<CargueArchivo>> ObtenerTodosAsync(DateTime inicio, DateTime fin);
+        Task<IList<RutaArchivos>> ObtenerTodosAsync(DateTime inicio, DateTime fin);
     }
 }

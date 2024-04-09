@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-
 namespace Opain.Jarvis.Dominio.Entidades
 {
     public class Causal
@@ -22,10 +19,14 @@ namespace Opain.Jarvis.Dominio.Entidades
         public string Descripcion { get; set; }
 
         [Required]
+        [ForeignKey("U_Item")]
         public int Tipo { get; set; }
+        public U_Item U_Item { get; set; }
 
         [Required]
+        [ForeignKey("U_Item2")]
         public int Estado { get; set; }
+        public U_Item U_Item2 { get; set; }
 
         public ICollection<NovedadProceso> NovedadesProceso { get; set; }
     }

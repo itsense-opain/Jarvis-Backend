@@ -1,14 +1,11 @@
 ﻿using AutoMapper;
-using Opain.Jarvis.Dominio.Entidades;
 using System.Linq;
-
 namespace Opain.Jarvis.Dominio.Entidades
 {
     public class PerfilMapeos : Profile
     {
         public PerfilMapeos()
         {
-
             CreateMap<OperacionVueloOtd, OperacionesVuelo>()
                 .ForMember(d => d.FechaVuelo, s => s.MapFrom(src => src.Fecha))
                 .ForMember(d => d.MatriculaVuelo, s => s.MapFrom(src => src.Matricula))
@@ -22,29 +19,12 @@ namespace Opain.Jarvis.Dominio.Entidades
                 .ForMember(d => d.TotalEmbarcados, s => s.MapFrom(src => src.TotalEmbarcados))
                 .ForMember(d => d.PagoCOP, s => s.MapFrom(src => src.PagoCOP))
                 .ForMember(d => d.PagoUSD, s => s.MapFrom(src => src.PagoUSD))
-                .ForMember(d => d.ConfirmacionPasajeros, s => s.MapFrom(src => src.ConfirmacionPasajeros))
-                .ForMember(d => d.ConfirmacionTransitos, s => s.MapFrom(src => src.ConfirmacionTransitos))
-                .ForMember(d => d.ConfirmacionGenDec, s => s.MapFrom(src => src.ConfirmacionGenDec))
-                .ForMember(d => d.CanfirmacionManifiesto, s => s.MapFrom(src => src.ConfirmacionManifiesto))
-                .ForMember(d => d.ConfirmacionOperacion, s => s.MapFrom(src => src.ConfirmacionOperacion))
-                .ForMember(d => d.IdVuelo, s => s.MapFrom(src => src.IdVuelo))
                 .ForMember(d => d.IdAerolinea, s => s.MapFrom(src => src.IdAerolinea))
                 .ForMember(d => d.TipoVuelo, s => s.MapFrom(src => src.Tipo))
                 .ForMember(d => d.NumeroVuelo, s => s.MapFrom(src => src.Vuelo))
                 .ForMember(d => d.Destino, s => s.MapFrom(src => src.Destino))
-                .ForMember(d => d.IdCargue, s => s.MapFrom(src => src.IdConsecutivoCargue))
-                .ForMember(d => d.tasasReportadas, s => s.MapFrom(src => src.tasasReportadas))
-                .ForMember(d => d.PAX_LIQ, s => s.MapFrom(src => src.PAX_LIQ))
-                .ForMember(d => d.INF_LIQ, s => s.MapFrom(src => src.INF_LIQ))
-                .ForMember(d => d.TTL_LIQ, s => s.MapFrom(src => src.TTL_LIQ))
-                .ForMember(d => d.TTC_LIQ, s => s.MapFrom(src => src.TTC_LIQ))
-                .ForMember(d => d.EX_LIQ, s => s.MapFrom(src => src.EX_LIQ))
-                .ForMember(d => d.TRIP_LIQ, s => s.MapFrom(src => src.TRIP_LIQ))
                 .ForMember(d => d.TotalEmbarcados_LIQ, s => s.MapFrom(src => src.TotalEmbarcados_LIQ))
-                .ForMember(d => d.PAGOCOP_LIQ, s => s.MapFrom(src => src.PAGOCOP_LIQ))
-                .ForMember(d => d.PAGOUSD_LIQ, s => s.MapFrom(src => src.PAGOUSD_LIQ));
-
-            //.ForMember(d => d.EstadoProceso, s => s.MapFrom(src => src.EstadoProceso == "Finalizado" ? 1 : 0));
+                .ForMember(d => d.TotalEmbarcadosAdd, s => s.MapFrom(src => src.TotalEmbarcadosAdd));
 
             CreateMap<OperacionesVuelo, OperacionVueloOtd>()
                 .ForMember(d => d.Id, s => s.MapFrom(src => src.Id))
@@ -65,34 +45,10 @@ namespace Opain.Jarvis.Dominio.Entidades
                 .ForMember(d => d.Vuelo, s => s.MapFrom(src => src.NumeroVuelo))
                 .ForMember(d => d.PDFPasajeros, s => s.MapFrom(src => src.Aerolinea.PDFPasajeros))
                 .ForMember(d => d.Tipo, s => s.MapFrom(src => src.TipoVuelo))
-                .ForMember(d => d.ConfirmacionPasajeros, s => s.MapFrom(src => src.ConfirmacionPasajeros))
-                .ForMember(d => d.ConfirmacionTransitos, s => s.MapFrom(src => src.ConfirmacionTransitos))
-                .ForMember(d => d.ConfirmacionGenDec, s => s.MapFrom(src => src.ConfirmacionGenDec))
-                .ForMember(d => d.ConfirmacionManifiesto, s => s.MapFrom(src => src.CanfirmacionManifiesto))
-                .ForMember(d => d.ConfirmacionOperacion, s => s.MapFrom(src => src.ConfirmacionOperacion))
-                .ForMember(d => d.ConsecutivoCargue, s => s.MapFrom(src => string.Format("{0}{1}{2}-{3}", src.Cargue.FechaHora.Year, src.Cargue.FechaHora.Month, src.Cargue.FechaHora.Day, src.IdCargue)))
-                .ForMember(d => d.IdConsecutivoCargue, s => s.MapFrom(src => src.IdCargue))
-                .ForMember(d => d.IdVuelo, s => s.MapFrom(src => src.IdVuelo))
-                .ForMember(d => d.Id_Daily, s => s.MapFrom(src => src.Id_Daily))
-                .ForMember(d => d.ArchivoGendec, s => s.MapFrom(src => src.Archivos.FirstOrDefault(x => x.Tipo.Equals("GENDEC")).Nombre))
-                .ForMember(d => d.ArchivoPasajeros, s => s.MapFrom(src => src.Archivos.FirstOrDefault(x => x.Tipo.Equals("PASAJEROS")).Nombre))
-                .ForMember(d => d.ArchivoTransito, s => s.MapFrom(src => src.Archivos.FirstOrDefault(x => x.Tipo.Equals("TRANSITOS")).Nombre))
-                .ForMember(d => d.ArchivoManifiesto, s => s.MapFrom(src => src.Archivos.FirstOrDefault(x => x.Tipo.Equals("MANIFIESTO")).Nombre))
                 .ForMember(d => d.EstadoProceso, s => s.MapFrom(src => src.EstadoProceso))
-                .ForMember(d => d.tasasReportadas, s => s.MapFrom(src => src.tasasReportadas))
-                //.ForMember(d => d.EstadoProceso, s => s.MapFrom(src => src.EstadoProceso == 1 ? "Finalizado" : "En Proceso"))
-                .ForMember(d => d.NovedadCargue, s => s.MapFrom(src => src.NovedadesProceso.Count(x => x.TipoNovedad.Equals(1))))
-                .ForMember(d => d.NovedadProceso, s => s.MapFrom(src => src.NovedadesProceso.Count(x => x.TipoNovedad.Equals(2))))
 
-                .ForMember(d => d.PAX_LIQ, s => s.MapFrom(src => src.PAX_LIQ))
-                .ForMember(d => d.INF_LIQ, s => s.MapFrom(src => src.INF_LIQ))
-                .ForMember(d => d.TTL_LIQ, s => s.MapFrom(src => src.TTL_LIQ))
-                .ForMember(d => d.TTC_LIQ, s => s.MapFrom(src => src.TTC_LIQ))
-                .ForMember(d => d.EX_LIQ, s => s.MapFrom(src => src.EX_LIQ))
-                .ForMember(d => d.TRIP_LIQ, s => s.MapFrom(src => src.TRIP_LIQ))
                 .ForMember(d => d.TotalEmbarcados_LIQ, s => s.MapFrom(src => src.TotalEmbarcados_LIQ))
-                .ForMember(d => d.PAGOCOP_LIQ, s => s.MapFrom(src => src.PAGOCOP_LIQ))
-                .ForMember(d => d.PAGOUSD_LIQ, s => s.MapFrom(src => src.PAGOUSD_LIQ));
+                .ForMember(d => d.TotalEmbarcadosAdd, s => s.MapFrom(src => src.TotalEmbarcadosAdd));
 
             CreateMap<PasajeroOtd, Pasajero>()
                 .ForMember(d => d.IdCategoriaPasajero, s => s.MapFrom(src => src.Categoria))
@@ -100,8 +56,8 @@ namespace Opain.Jarvis.Dominio.Entidades
                 .ForMember(d => d.FechaVuelo, s => s.MapFrom(src => src.Fecha))
                 .ForMember(d => d.NumeroVuelo, s => s.MapFrom(src => src.NumeroVuelo))
                 .ForMember(d => d.MatriculaVuelo, s => s.MapFrom(src => src.MatriculaVuelo))
-                .ForMember(d => d.realiza_viaje, s => s.MapFrom(src => src.realiza_viaje))
-                .ForMember(d => d.motivo_exencion, s => s.MapFrom(src => src.motivo_exencion))
+                .ForMember(d => d.Realiza_viaje, s => s.MapFrom(src => src.Realiza_viaje))
+                .ForMember(d => d.Motivo_exencion, s => s.MapFrom(src => src.Motivo_exencion))
                 .ForMember(d => d.IdCargue, s => s.MapFrom(src => src.IdCargue))
                 .ForMember(d => d.NombrePasajero, s => s.MapFrom(src => src.NombrePasajero));
 
@@ -114,8 +70,8 @@ namespace Opain.Jarvis.Dominio.Entidades
                 .ForMember(d => d.MatriculaVuelo, s => s.MapFrom(src => src.MatriculaVuelo))
                 .ForMember(d => d.NombreAerolinea, s => s.MapFrom(src => src.OperacionesVuelo.Aerolinea.Nombre))
                 .ForMember(d => d.TipoVuelo, s => s.MapFrom(src => src.OperacionesVuelo.TipoVuelo))
-                .ForMember(d => d.realiza_viaje, s => s.MapFrom(src => src.realiza_viaje))
-                .ForMember(d => d.motivo_exencion, s => s.MapFrom(src => src.motivo_exencion))
+                .ForMember(d => d.Realiza_viaje, s => s.MapFrom(src => src.Realiza_viaje))
+                .ForMember(d => d.Motivo_exencion, s => s.MapFrom(src => src.Motivo_exencion))
                 .ForMember(d => d.IdCargue, s => s.MapFrom(src => src.IdCargue))
                 .ForMember(d => d.NumeroVuelo, s => s.MapFrom(src => src.NumeroVuelo));
 
@@ -163,10 +119,10 @@ namespace Opain.Jarvis.Dominio.Entidades
                .ForMember(d => d.TTC, s => s.MapFrom(src => src.Categoria == "TTC" ? 1 : 0))
                .ForMember(d => d.TTL, s => s.MapFrom(src => src.Categoria == "TTL" ? 1 : 0));
 
-            CreateMap<ArchivoOtd, Archivo>()
+            CreateMap<ArchivoOtd, RutaArchivos>()
                 .ForMember(d => d.Id, s => s.MapFrom(src => src.Id))
-                .ForMember(d => d.Nombre, s => s.MapFrom(src => src.Nombre))
-                .ForMember(d => d.Tipo, s => s.MapFrom(src => src.Tipo))
+                .ForMember(d => d.NombreArchivo, s => s.MapFrom(src => src.Nombre))
+                .ForMember(d => d.TipoArchivo, s => s.MapFrom(src => src.Tipo))
                 .ForMember(d => d.IdOperacionVuelo, s => s.MapFrom(src => src.Operacion))
                 .ReverseMap();
 
@@ -299,7 +255,7 @@ namespace Opain.Jarvis.Dominio.Entidades
             CreateMap<Acceso, AccesoOtd>().ReverseMap();
             CreateMap<PoliticasDeTratamientoDeDatos, PoliticasDeTratamientoDeDatosOtd>().ReverseMap();
 
-            CreateMap<CargueArchivo, CargueOtd>().ReverseMap();
+            CreateMap<RutaArchivos, CargueOtd>().ReverseMap();
 
             CreateMap<Causal, CausalOtd>().ReverseMap();
 

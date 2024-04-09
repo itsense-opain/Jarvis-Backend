@@ -6,11 +6,11 @@ namespace Opain.Jarvis.Infraestructura.Datos.Core
 {
     public interface IArchivoRepositorio
     {
-        Task InsertarAsync(Archivo archivo);
-        Task InsertarMasivoAsync(IList<Archivo> archivo);
-        Task ActualizarAsync(Archivo archivo);
+        Task InsertarAsync(RutaArchivos archivo);
+        Task InsertarMasivoAsync(IList<RutaArchivos> archivo);
+        Task ActualizarAsync(RutaArchivos archivo);
         Task EliminarAsync(int id);
-        Task<Archivo> ObtenerAsync(int id);
-        Task<IList<Archivo>> ObtenerPorOperacionAsync(int idOperacion);
+        Task<RutaArchivos> ObtenerAsync(int id);
+        Task<IList<RutaArchivos>> ObtenerPorOperacionAsync(int idOperacion);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Opain.Jarvis.Dominio.Entidades
 {
@@ -12,7 +13,6 @@ namespace Opain.Jarvis.Dominio.Entidades
         [Required]
         [MaxLength(100)]
         public string Nombre { get; set; }
-
         [Required]
         public bool IdEstado { get; set; }
         public ICollection<Ciudad> Ciudades { get; set; }

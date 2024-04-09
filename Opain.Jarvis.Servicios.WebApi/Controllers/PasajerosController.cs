@@ -63,8 +63,8 @@ namespace Opain.Jarvis.Servicios.WebApi.Controllers
                     ex.id_vuelo = pasajeroOtd.Operacion.ToString();
                     ex.nombre = pasajeroOtd.NombrePasajero;
                     ex.tipo_exento = "EX";
-                    ex.realiza_viaje = pasajeroOtd.realiza_viaje;
-                    ex.motivo_exencion = pasajeroOtd.motivo_exencion;                    
+                    ex.realiza_viaje = pasajeroOtd.Realiza_viaje;
+                    ex.motivo_exencion = pasajeroOtd.Motivo_exencion;                    
 
                     this.Store_OperacionesVuelo.InsOrUpdExento(ex);
                 }
@@ -158,8 +158,8 @@ namespace Opain.Jarvis.Servicios.WebApi.Controllers
                     ex.id_vuelo = pasajeroOtd.Operacion.ToString();
                     ex.nombre = pasajeroOtd.NombrePasajero;
                     ex.tipo_exento = "EX";
-                    ex.realiza_viaje = pasajeroOtd.realiza_viaje;
-                    ex.motivo_exencion = pasajeroOtd.motivo_exencion;
+                    ex.realiza_viaje = pasajeroOtd.Realiza_viaje;
+                    ex.motivo_exencion = pasajeroOtd.Motivo_exencion;
 
                     this.Store_OperacionesVuelo.InsOrUpdExento(ex);
                 }

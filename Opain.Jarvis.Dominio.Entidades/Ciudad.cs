@@ -19,11 +19,9 @@ namespace Opain.Jarvis.Dominio.Entidades
         [ForeignKey("Pais")]
         public string IdPais { get; set; }
         public Pais Pais { get; set; }
-        public string Codigo { get; set; }
-        
         [Required]
         public bool IdEstado { get; set; }
-
+        public string Codigo { get; set; }       
         public ICollection<Vuelo> Origenes { get; set; }
 
         public ICollection<Vuelo> Destinos { get; set; }

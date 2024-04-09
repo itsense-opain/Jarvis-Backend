@@ -48,12 +48,11 @@ namespace Opain.Jarvis.Aplicacion.Principal
 
             if (vuelo != null)
             {
-                operacionVuelo.IdVuelo = vuelo.Id;
+                operacionVuelo.Id = vuelo.Id;
             }
             else
             {
-                if(operacionVuelo.IdVuelo == null)
-                    operacionVuelo.IdVuelo = 0;
+                operacionVuelo.Id = 0;
             }
 
             await operacionesVueloRepositorio.ActualizarAsync(operacionVuelo).ConfigureAwait(false);
@@ -79,11 +78,11 @@ namespace Opain.Jarvis.Aplicacion.Principal
             var vuelo = await vueloRepositorio.ObtenerPorNombreAsync(operacionVueloOtd.Vuelo);
             if (vuelo != null)
             {
-                operacionVuelo.IdVuelo = vuelo.Id;
+                operacionVuelo.Id = vuelo.Id;
             }
             else
             {
-                operacionVuelo.IdVuelo = 0;
+                operacionVuelo.Id = 0;
             }
 
             await operacionesVueloRepositorio.InsertarAsync(operacionVuelo).ConfigureAwait(false);
@@ -108,11 +107,11 @@ namespace Opain.Jarvis.Aplicacion.Principal
                 var vuelo = await vueloRepositorio.ObtenerPorNombreAsync(item.Vuelo);
                 if (vuelo != null)
                 {
-                    operacionVuelo.IdVuelo = vuelo.Id;
+                    operacionVuelo.Id = vuelo.Id;
                 }
                 else
                 {
-                    operacionVuelo.IdVuelo = 0;
+                    operacionVuelo.Id = 0;
                 }
 
                 listadoOpVuelo.Add(operacionVuelo);
@@ -132,10 +131,10 @@ namespace Opain.Jarvis.Aplicacion.Principal
         public async Task<IList<OperacionVueloOtd>> ObtenerTodosAsync(DateTime fechaVueloInicio, DateTime fechaVueloFinal, string bandera = "0")
         {
             List<OperacionVueloOtd> operacionesVueloOtd = new List<OperacionVueloOtd>();
-            int cont=0;
-            
+            int cont = 0;
+
             var operacionesVuelo = await operacionesVueloRepositorio.ObtenerTodosAsync(fechaVueloInicio, fechaVueloFinal, bandera).ConfigureAwait(false);
-            var numeroOperacionesVuelos = operacionesVuelo.Count()==0?0: operacionesVuelo.Count();
+            var numeroOperacionesVuelos = operacionesVuelo.Count() == 0 ? 0 : operacionesVuelo.Count();
 
             // List<string> names = operacionesVuelo.Select(user => user.PasajerosTransitos.Select(x=>x.Firmado.Equals(1)).Select).ToList();
             List<Opain.Jarvis.Dominio.Entidades.OperacionesVuelo> Lista = new List<OperacionesVuelo>();
@@ -165,7 +164,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
                 foreach (var item in Lista)
                 {
                     var vuelo = mapper.Map<OperacionesVuelo, OperacionVueloOtd>(item);
-                    operacionesVueloOtd.Add(vuelo);                    
+                    operacionesVueloOtd.Add(vuelo);
                 }
             }
             else if (bandera == "INF")
@@ -191,7 +190,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
                     operacionesVueloOtd.Add(vuelo);
                 }
             }
-            else 
+            else
             {
                 Lista = (List<Opain.Jarvis.Dominio.Entidades.OperacionesVuelo>)operacionesVuelo;
                 foreach (var item in Lista)
@@ -207,7 +206,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
             List<OperacionVueloOtd> operacionesVueloOtd = new List<OperacionVueloOtd>();
             int cont = 0;
             List<Opain.Jarvis.Dominio.Entidades.OperacionesVuelo> Lista = new List<OperacionesVuelo>();
-            var operacionesVuelo = await operacionesVueloRepositorio.ObtenerTodosAerolineaAsync(IDAerolinea,fechaVueloInicio, fechaVueloFinal, bandera, tipoVueloHistorico).ConfigureAwait(false);
+            var operacionesVuelo = await operacionesVueloRepositorio.ObtenerTodosAerolineaAsync(IDAerolinea, fechaVueloInicio, fechaVueloFinal, bandera, tipoVueloHistorico).ConfigureAwait(false);
             var numeroOperacionesVuelos = operacionesVuelo.Count() == 0 ? 0 : operacionesVuelo.Count();
 
             if (bandera == "LIQ")
@@ -223,14 +222,14 @@ namespace Opain.Jarvis.Aplicacion.Principal
                         {
                             foreach (Opain.Jarvis.Dominio.Entidades.PasajeroTransito Pasajero in Vuelo.PasajerosTransitos)
                             {
-                                if (Pasajero.Firmado == 0 && Pasajero.Categoria=="TTC")
+                                if (Pasajero.Firmado == 0 && Pasajero.Categoria == "TTC")
                                 {
                                     SePuedeLiquidar = false;
                                     break;
                                 }
                             }
                         }
-                    }                    
+                    }
                     if (SePuedeLiquidar)
                     {
                         Lista.Add(Vuelo);
@@ -243,7 +242,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
                 }
             }
             else if (bandera == "INF")
-            {                
+            {
                 foreach (var item in operacionesVuelo)
                 {
                     var vuelo = mapper.Map<OperacionesVuelo, OperacionVueloOtd>(item);
@@ -305,7 +304,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
             foreach (var item in listadoOtd)
             {
                 var vuelo = mapper.Map<OperacionVueloOtd, OperacionesVuelo>(item);
-                vuelo.IdVuelo = vueloRepositorio.ObtenerPorNombreAsync(item.Vuelo).Result.Id;
+                vuelo.Id = vueloRepositorio.ObtenerPorNombreAsync(item.Vuelo).Result.Id;
                 listadoOpVuelo.Add(vuelo);
             }
 
@@ -330,7 +329,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
 
         public void NovedadesPasajeros(OperacionVueloOtd operacion, IList<PasajeroOtd> pasajeros)
         {
-            if(pasajeros.Count != operacion.TotalEmbarcados)
+            if (pasajeros.Count != operacion.TotalEmbarcados)
             {
                 novedadAplicacion.InsertarAsync(
                     new NovedadOtd
@@ -344,7 +343,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
                     });
             }
 
-            if(pasajeros.Count(x => x.Categoria.Equals("INF")) != operacion.INF)
+            if (pasajeros.Count(x => x.Categoria.Equals("INF")) != operacion.INF)
             {
                 novedadAplicacion.InsertarAsync(
                     new NovedadOtd
@@ -358,7 +357,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
                     });
             }
 
-            if(pasajeros.Count(x => x.Categoria.Equals("TRIP")) != operacion.TRIP)
+            if (pasajeros.Count(x => x.Categoria.Equals("TRIP")) != operacion.TRIP)
             {
                 novedadAplicacion.InsertarAsync(
                     new NovedadOtd
@@ -372,7 +371,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
                     });
             }
 
-            if(pasajeros.Count(x => x.Categoria.Equals("TTL")) != operacion.TTL)
+            if (pasajeros.Count(x => x.Categoria.Equals("TTL")) != operacion.TTL)
             {
                 novedadAplicacion.InsertarAsync(
                     new NovedadOtd
@@ -386,7 +385,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
                     });
             }
 
-            if(pasajeros.Count(x => x.Categoria.Equals("TTC")) != operacion.TTC)
+            if (pasajeros.Count(x => x.Categoria.Equals("TTC")) != operacion.TTC)
             {
                 novedadAplicacion.InsertarAsync(
                     new NovedadOtd
@@ -414,7 +413,8 @@ namespace Opain.Jarvis.Aplicacion.Principal
                     });
             }
 
-            Parallel.ForEach(pasajeros, (pasajero) => {
+            Parallel.ForEach(pasajeros, (pasajero) =>
+            {
                 if (pasajero.Fecha != operacion.Fecha)
                 {
                     novedadAplicacion.InsertarAsync(
@@ -461,7 +461,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
 
         public void NovedadesTransitos(OperacionVueloOtd operacion, IList<PasajeroTransitoOtd> transitos, IList<PasajeroOtd> pasajeros)
         {
-            if(transitos.Count(x => x.TTC.Equals(1)) != operacion.TTC)
+            if (transitos.Count(x => x.TTC.Equals(1)) != operacion.TTC)
             {
                 novedadAplicacion.InsertarAsync(
                     new NovedadOtd
@@ -475,7 +475,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
                     });
             }
 
-            if(transitos.Count(x => x.TTL.Equals(1)) != operacion.TTL)
+            if (transitos.Count(x => x.TTL.Equals(1)) != operacion.TTL)
             {
                 novedadAplicacion.InsertarAsync(
                     new NovedadOtd
@@ -681,7 +681,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
                             });
                     }
                 }
-            });        
+            });
         }
 
         public async Task SuspenderAsync(int id)
@@ -692,7 +692,7 @@ namespace Opain.Jarvis.Aplicacion.Principal
         {
             List<OperacionVueloOtd> operacionesVueloOtd = new List<OperacionVueloOtd>();
             IList<OperacionesVuelo> List = await operacionesVueloRepositorio.ObtenerSuspencionesNotificar().ConfigureAwait(false);
-            foreach(var item in List)
+            foreach (var item in List)
             {
                 var vuelo = mapper.Map<OperacionesVuelo, OperacionVueloOtd>(item);
                 operacionesVueloOtd.Add(vuelo);

@@ -20,8 +20,8 @@ namespace Opain.Jarvis.Dominio.Entidades
         public string Categoria { get; set; }
         public string NombreAerolinea { get; set; }
         public string TipoVuelo { get; set; }
-        public string realiza_viaje { get; set; }
-        public string motivo_exencion { get; set; }
+        public string Realiza_viaje { get; set; }
+        public string Motivo_exencion { get; set; }
         public int Origen { get; set; }
         public int IdCargue { get; set; }
 

@@ -39,20 +39,6 @@ namespace Opain.Jarvis.Servicios.Store.Helper
             ope.ConfirmacionGenDec = int.Parse(dr["ConfirmacionGenDec"].ToString());
             ope.PagoCOP = int.Parse(dr["PagoCOP"].ToString());
             ope.PagoUSD = int.Parse(dr["PagoUSD"].ToString());
-
-            ///Informacion de liquidados
-            if (dr["INF_LIQ"].ToString() != null && dr["INF_LIQ"].ToString() != string.Empty)
-            {
-                ope.INF_LIQ = int.Parse(dr["INF_LIQ"].ToString());
-                ope.TTL_LIQ = int.Parse(dr["TTL_LIQ"].ToString());
-                ope.TTC_LIQ = int.Parse(dr["TTC_LIQ"].ToString());
-                ope.EX_LIQ = int.Parse(dr["EX"].ToString());
-                ope.TRIP_LIQ = int.Parse(dr["TRIP_LIQ"].ToString());
-                ope.PAX_LIQ = int.Parse(dr["PAX_LIQ"].ToString());
-                ope.PAGOCOP_LIQ = int.Parse(dr["PAGOCOP_LIQ"].ToString());
-                ope.PAGOUSD_LIQ = int.Parse(dr["PAGOUSD_LIQ"].ToString());
-            }
-
             return ope;
         }
 
